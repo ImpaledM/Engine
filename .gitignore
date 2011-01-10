@@ -1,3 +1,3 @@
 .gitignore
-system/application/config/config.php
+config.php
 database.*

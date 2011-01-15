@@ -57,6 +57,6 @@ code {
 
 
 <p><br />Page rendered in {elapsed_time} seconds</p>
-
+<?=anchor('welcome/index', 'My newsds')?>
 </body>
 </html>

@@ -139,6 +139,7 @@ if ( ! function_exists('anchor'))
 {
 	function anchor($uri = '', $title = '', $attributes = '')
 	{
+		$CI =& get_instance();
 		$title = (string) $title;
 
 		if ( ! is_array($uri))
@@ -154,13 +155,25 @@ if ( ! function_exists('anchor'))
 		{
 			$title = $site_url;
 		}
-
+		
+		if ($site_url === (base_url().implode('/',$CI->uri->rsegment_array())))
+		{
+			if(is_array($attributes))
+			{
+				$attributes['class'] = (array_key_exists('class', $attributes)) ? $attributes['class'] : 'active';
+			}
+			else
+			{
+				$attributes .= ' class="active"';
+			}
+		}
+		
 		if ($attributes != '')
 		{
 			$attributes = _parse_attributes($attributes);
 		}
 
-		return '<a href="'.$site_url.'"'.$attributes.'>'.$title.'</a>';
+		return '<a href="'.$site_url.'"'.$attributes.'>'.$title.' uri = '.base_url().implode('/',$CI->uri->rsegment_array()).', site_url = '.$site_url.'</a>';
 	}
 }
 
